@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper Scissors</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+</head>
+
+<body>
+    <style>
+        .game{
+            height:70vh;
+            width:50vw;
+            border-radius: 20%;
+            border-color: aqua;
+            border-style: solid;
+            border-width:5px;
+            
+
+
+        }
+        .bg{
+            background-color: cadetblue;
+            background-image: url('https://ik.imagekit.io/lnqmqlsgod/pngwing.com.png?updatedAt=1726066580302');
+            height:100vh;
+            
+            align-items: center;
+        }
+        .imag{
+            height:5vh;
+        }
+    </style>
+    <div  class="bg-info bg d-flex flex-column justify-content-center">
+    <div class="game bg-dark text-light text-center  p-5 ">
+        <h1>Rock paper Scissors Game Let's begin</h1>
+        <div class="m-5">
+            <button class="btn btn-outline-info m-2" onclick="playgame('rock')"><img class="imag" src="https://w7.pngwing.com/pngs/90/1018/png-transparent-rock-stone-image-file-formats-photography-desktop-wallpaper-thumbnail.png"/><br>rock</button>
+            <button class="btn btn-outline-info m-2" onclick="playgame('paper')"><img class="imag" src="https://w7.pngwing.com/pngs/1024/100/png-transparent-paper-paper-clip-torn-lined-paper-paper-sheet-note-scrapbooking-thumbnail.png"/><br>paper</button>
+            <button class="btn btn-outline-info m-2" onclick="playgame('scissor')"><img class="imag" src="https://w7.pngwing.com/pngs/376/902/png-transparent-scissors-line-scissors-technic-scissors-weapon-thumbnail.png"/><br>scissor</button>
+
+            <p class="result" id="result"></p>
+            <p class="score" id="score">playerscore : 0 || computerScore : 0</p>
+
+            <button class="btn btn-outline-info m-5" onclick="reset()">Reset</button>
+        </div>
+    </div>
+</div>
+<script>
+    let playerscore=0;
+    let computerscore=0;
+    
+    function playgame(playerchoice){
+
+        const choices = ['rock', 'paper', 'scissor'];
+        const computerchoice = choices[Math.floor(Math.random() * 3)];
+
+        let res='';
+
+        if(playerchoice==computerchoice){
+               res='tie';
+        }else if((playerchoice === 'rock' && computerchoice === 'scissors') ||
+                (playerchoice === 'paper' && computerchoice === 'rock') ||
+                (playerchoice === 'scissors' && computerchoice === 'paper')){
+            res='You win';
+            playerscore++;
+        }else{
+            res='lose';
+            computerscore++;
+        }
+        const result=`playerchoice ${playerchoice} and the computerchoice ${computerchoice} : ${res}`;
+        document.getElementById('result').textContent=result;
+        document.getElementById('score').textContent=`playerscore : ${playerscore} || computerscore : ${computerscore}`;
+
+
+        
+    }
+    
+
+    function reset(){
+        playerscore=0;
+        computerscore=0;
+
+        document.getElementById('result').textContent='';
+        document.getElementById('score').textContent=`playerscore : ${playerscore} || computerscore : ${computerscore}`;
+    }
+
+    
+    
+</script>
+</body>
+</html>
